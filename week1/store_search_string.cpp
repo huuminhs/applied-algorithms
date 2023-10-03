@@ -45,6 +45,15 @@ bool find_string(string str) {
     else return false;
 }
 
+void freeMem(Node* myNode) {
+    if (myNode != NULL) {
+        for (int i = 0; i < 26; i++)
+            freeMem(myNode->child[i]);
+        free(myNode);
+    }
+    return;
+}
+
 int main() {
     int i, strlen;
     string tmp;
@@ -72,5 +81,8 @@ int main() {
             }
         }
     }
+
+    freeMem(root);
+
     return 0;
 }
